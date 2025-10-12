@@ -2,9 +2,8 @@
 
 ```mermaid
 erDiagram
-    %% ===== ENTITIES =====
     CENTER {
-        int CenterID PK
+        int CenterID
         string Name
         string Location
         string Phone
@@ -12,17 +11,17 @@ erDiagram
     }
 
     EMPLOYEE {
-        int EmployeeID PK
+        int EmployeeID
         string Name
         string Email
         string Password
         string Phone
         string Role
-        int CenterID FK
+        int CenterID
     }
 
     TEACHER {
-        int TeacherID PK
+        int TeacherID
         string Name
         string Email
         string Password
@@ -30,14 +29,14 @@ erDiagram
     }
 
     TEACHER_CENTER {
-        int TeacherCenterID PK
-        int TeacherID FK
-        int CenterID FK
-        decimal SalaryShare
+        int TeacherCenterID
+        int TeacherID
+        int CenterID
+        float SalaryShare
     }
 
     STUDENT {
-        int StudentID PK
+        int StudentID
         string Code
         string Name
         string Email
@@ -46,65 +45,58 @@ erDiagram
     }
 
     SUBJECT {
-        int SubjectID PK
+        int SubjectID
         string Name
         string Description
     }
 
     CLASS_TBL {
-        int ClassID PK
+        int ClassID
         string Name
-        int SubjectID FK
-        int CenterID FK
-        int TeacherID FK
-        datetime Schedule
+        int SubjectID
+        int CenterID
+        int TeacherID
+        string Schedule
         string Room
     }
 
     ATTENDANCE {
-        int AttendanceID PK
-        int StudentID FK
-        int ClassID FK
-        datetime Date
+        int AttendanceID
+        int StudentID
+        int ClassID
+        string Date
         bool Present
     }
 
     PAYMENT {
-        int PaymentID PK
-        int StudentID FK
-        int ClassID FK
-        decimal Amount
+        int PaymentID
+        int StudentID
+        int ClassID
+        float Amount
         string Type
-        datetime Date
+        string Date
         string Notes
     }
 
-    STORAGE_TBL {
-        int StorageID PK
-        int CenterID FK
-        string ItemName
-        int Quantity
-        decimal UnitPrice
-    }
+    %% Relationships
+    CENTER ||--o{ EMPLOYEE : employs
+    CENTER ||--o{ CLASS_TBL : hosts
+    CENTER ||--o{ TEACHER_CENTER : manages
 
-    %% ===== RELATIONSHIPS (WITH CARDINALITY) =====
-    CENTER ||--o{ EMPLOYEE : "1 to many"
-    CENTER ||--o{ CLASS_TBL : "1 to many"
-    CENTER ||--o{ TEACHER_CENTER : "1 to many"
-    CENTER ||--o{ STORAGE_TBL : "1 to many"
+    TEACHER ||--o{ TEACHER_CENTER : assigned_to
+    TEACHER ||--o{ CLASS_TBL : teaches
 
-    TEACHER ||--o{ TEACHER_CENTER : "1 to many"
-    TEACHER ||--o{ CLASS_TBL : "1 to many"
+    STUDENT ||--o{ ATTENDANCE : attends
+    STUDENT ||--o{ PAYMENT : pays
 
-    STUDENT ||--o{ ATTENDANCE : "1 to many"
-    STUDENT ||--o{ PAYMENT : "1 to many"
+    CLASS_TBL ||--o{ ATTENDANCE : includes
+    CLASS_TBL ||--o{ PAYMENT : billed_in
 
-    CLASS_TBL ||--o{ ATTENDANCE : "1 to many"
-    CLASS_TBL ||--o{ PAYMENT : "1 to many"
+    SUBJECT ||--o{ CLASS_TBL : includes
 
-    SUBJECT ||--o{ CLASS_TBL : "1 to many"
+
 ```
-## 🏢 Center
+# 🏢 Center
 **Attributes**
 - CenterID (PK)
 - Name
@@ -119,13 +111,12 @@ erDiagram
 - 1 — M → TeacherCenterAccount *(Optional)*
 - 1 — M → StudentCenterAccount *(Optional)*
 - 1 — M → Classroom *(Mandatory)*
-- 1 — M → InventoryItem *(Optional)*
 - 1 — M → Class *(Optional)*
 - 1 — M → PaymentRecord *(Optional)*
 
 ---
 
-## 👤 User (Base Entity)
+# 👤 User (Base Entity)
 Represents any system user (Admin, Employee, Teacher, Student).
 
 **Attributes**
@@ -142,7 +133,7 @@ Represents any system user (Admin, Employee, Teacher, Student).
 
 ---
 
-## 👨‍💼 Employee
+# 👨‍💼 Employee
 **Attributes**
 - EmployeeID (PK, FK → UserID)
 - CenterID (FK)
@@ -155,11 +146,10 @@ Represents any system user (Admin, Employee, Teacher, Student).
 - M — 1 → Center *(Mandatory)*
 - 1 — M → PaymentRecord *(Optional)*
 - 1 — M → AttendanceRecord *(Optional)*
-- 1 — M → InventoryTransaction *(Optional)*
 
 ---
 
-## 👨‍🏫 Teacher
+# 👨‍🏫 Teacher
 **Attributes**
 - TeacherID (PK, FK → UserID)
 - Specialization
@@ -172,7 +162,7 @@ Represents any system user (Admin, Employee, Teacher, Student).
 
 ---
 
-## 💼 TeacherCenterAccount
+# 💼 TeacherCenterAccount
 Defines a teacher’s relationship and financial link with a specific center.
 
 **Attributes**
@@ -191,7 +181,7 @@ Defines a teacher’s relationship and financial link with a specific center.
 
 ---
 
-## 👨‍🎓 Student
+# 👨‍🎓 Student
 **Attributes**
 - StudentID (PK, FK → UserID)
 - Code (Unique across all centers)
@@ -205,7 +195,7 @@ Defines a teacher’s relationship and financial link with a specific center.
 
 ---
 
-## 🏫 StudentCenterAccount
+# 🏫 StudentCenterAccount
 Represents a student’s presence and payments within a specific center.
 
 **Attributes**
@@ -225,7 +215,7 @@ Represents a student’s presence and payments within a specific center.
 
 ---
 
-## 📘 Class
+# 📘 Class
 **Attributes**
 - ClassID (PK)
 - CenterID (FK)
@@ -247,7 +237,7 @@ Represents a student’s presence and payments within a specific center.
 
 ---
 
-## 🧾 Session
+# 🧾 Session
 **Attributes**
 - SessionID (PK)
 - ClassID (FK)
@@ -263,7 +253,7 @@ Represents a student’s presence and payments within a specific center.
 
 ---
 
-## 🧍 Enrollment
+# 🧍 Enrollment
 **Attributes**
 - EnrollmentID (PK)
 - StudentCenterID (FK)
@@ -278,7 +268,7 @@ Represents a student’s presence and payments within a specific center.
 
 ---
 
-## 🕓 AttendanceRecord
+# 🕓 AttendanceRecord
 **Attributes**
 - AttendanceID (PK)
 - StudentCenterID (FK)
@@ -294,7 +284,7 @@ Represents a student’s presence and payments within a specific center.
 
 ---
 
-## 💰 PaymentRecord
+# 💰 PaymentRecord
 **Attributes**
 - PaymentID (PK)
 - CenterID (FK)
@@ -315,7 +305,7 @@ Represents a student’s presence and payments within a specific center.
 
 ---
 
-## 🏛 Classroom
+# 🏛 Classroom
 **Attributes**
 - ClassroomID (PK)
 - CenterID (FK)
@@ -328,35 +318,3 @@ Represents a student’s presence and payments within a specific center.
 - M — 1 → Center *(Mandatory)*
 - 1 — M → Class *(Optional)*
 
----
-
-## 📦 InventoryItem
-**Attributes**
-- ItemID (PK)
-- CenterID (FK)
-- Name
-- Category
-- Quantity
-- UnitPrice
-- ReorderLevel
-- LastUpdated
-
-**Relationships**
-- M — 1 → Center *(Mandatory)*
-- 1 — M → InventoryTransaction *(Optional)*
-
----
-
-## 🔄 InventoryTransaction
-**Attributes**
-- TransactionID (PK)
-- ItemID (FK)
-- EmployeeID (FK)
-- QuantityChange
-- Type (Add / Remove / Transfer / Use)
-- Date
-- Note
-
-**Relationships**
-- M — 1 → InventoryItem *(Mandatory)*
-- M — 1 → Employee *(Mandatory)*
