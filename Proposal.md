@@ -2,7 +2,7 @@
 
 ## Submitted by: Ahmed Qassem
 **Role:** Software Developer  
-**Duration:** 3 Months (2 Months Development + 1 Month Testing)  
+**Duration:** 3 Months (9 weeks Development + 1 Month Testing)  
 **Project Start Date:** 1st November  
 (Provided that the client confirms agreement before the mentioned date)
 
