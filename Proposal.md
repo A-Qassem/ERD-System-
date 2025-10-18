@@ -46,13 +46,14 @@ The system will cover **attendance tracking**, **payment management**, **schedul
 ---
 
 ### **D. Admin (Head Office) Module**
-- One **main administrative account** with full control over:
+- **main administrative account** with full control over:
   - Adding and managing **teachers and staff accounts**.  
   - Viewing **financial reports**, expenses, and profits per branch.  
   - Generating **overall performance reports** across all centers.  
   - Monitoring student registration growth or decline.  
   - Viewing detailed branch-level data for attendance, revenue, and student activity.
-
+- **center-based admin** with control over:
+  - all specific center's operations (main administrative account) but limited to specific center
 ---
 
 ## 3. Security & Data Protection
