@@ -3,10 +3,6 @@
 ## Submitted by: Ahmed Qassem
 **Role:** Software Developer  
 **Duration:** 3 Months (2 Months Development + 1 Month Testing)  
-**Total Cost:**  
-- **15,000 EGP** (if code ownership remains with the development team)  
-- **20,000 EGP** (if full source code ownership is transferred to the client)  
-
 **Project Start Date:** 1st November  
 (Provided that the client confirms agreement before the mentioned date)
 
