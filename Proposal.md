@@ -1,7 +1,5 @@
 # Proposal for Educational Center Management System
 
-## Submitted by: Ahmed Qassem
-**Role:** Software Developer  
 **Duration:** 3 Months (9 weeks Development + 1 Month Testing)  
 **Project Start Date:** 1st November  
 (Provided that the client confirms agreement before the mentioned date)
