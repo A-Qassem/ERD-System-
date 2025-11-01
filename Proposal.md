@@ -85,15 +85,8 @@ To enhance scalability and usability:
 
 ---
 
-## 6. Delivery Options
-
-| Option | Description | Cost |
-|--------|--------------|------|
-| **Option 1** | Client receives access to the **platform link** and an **admin account** to manage the system. Source code remains with the development team, who will handle future maintenance or upgrades as separate projects. | **15,000 EGP** |
-| **Option 2** | Client receives the **platform link**, **admin account**, and full **source code repository (repository link)** for independent development and maintenance. | **20,000 EGP** |
-
 **Payment Terms:**  
-- 10% upfront to confirm project initiation.  
+- 20% upfront to confirm project initiation.  
 - Remaining balance divided across milestones according to progress.
 
 ---
